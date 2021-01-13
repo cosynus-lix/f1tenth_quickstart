@@ -3,7 +3,7 @@ import rospy
 from ackermann_msgs.msg import AckermannDriveStamped
 from sensor_msgs.msg import LaserScan
 
-TARGET_DIST_LEFT = 1.2
+TARGET_DIST_RIGHT = 1.2
 LOOKING_ANGLE = 0.7
 steering_target = 1.0 # bang-bang control
 speed = 1.0
@@ -106,10 +106,10 @@ class Agent(object):
     def calc_drive_cmd(self, scan_msg):
         print('got scan, now planning...')
         drive = AckermannDriveStamped()
-        print "angles: {}".format(find_angle(scan_msg,1.))
+        # print "angles: {}".format(find_angle(scan_msg,1.))
         left,right = dist_min(scan_msg)
         drive.drive.speed = speed
-        drive.drive.steering_angle = -self.pid(TARGET_DIST_LEFT - left)
+        drive.drive.steering_angle = self.pid(TARGET_DIST_RIGHT - right)
         return drive
 
 
