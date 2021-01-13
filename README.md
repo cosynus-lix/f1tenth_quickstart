@@ -18,6 +18,12 @@ $ git checkout origin/master
 $ sudo ./build_docker.sh (it takes several minutes)
 $ sudo ./docker.sh
 ```
+In case that fail to download docker image (take too much time) or not correctly compile, try to launch the simulator alternatively:
+```
+$ cd ~/f110_ws/src/f1tenth_gym_ros/
+$ ./start.sh
+```
+
 
 ### Step 2 - Launch the controller
 ```
