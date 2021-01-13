@@ -4,14 +4,16 @@ This repository is for providing a quick start on using the [f1tenth_gym_ros](ht
 ## Preparation:
 ```
 Install Docker see https://docs.docker.com/engine/install/
-$ cd [root of this repo]
-$ git clone https://github.com/f1tenth/f1tenth_gym_ros.git src/
+$ mkdir -p ~/f110_ws/src
+$ cd ~/f110_ws/src/
+$ git clone https://github.com/cosynus-lix/f1tenth_quickstart.git
+$ git clone https://github.com/f1tenth/f1tenth_gym_ros.git
 ```
 
 ## Single vehicle mode:
 ### Step 1 - Launch the simulator:
 ```
-$ cd [root of this repo]/src/f1tenth_gym_ros
+$ cd ~/f110_ws/src/f1tenth_gym_ros/
 $ git checkout origin/master
 $ sudo ./build_docker.sh (it takes several minutes)
 $ sudo ./docker.sh
@@ -19,7 +21,7 @@ $ sudo ./docker.sh
 
 ### Step 2 - Launch the controller
 ```
-$ cd [root of this repo]
+$ cd ~/f110_ws/
 $ catkin_make
 $ roslaunch f1tenth_controller_example wall_following_agent_node.launch
 ```
@@ -27,7 +29,7 @@ $ roslaunch f1tenth_controller_example wall_following_agent_node.launch
 ## Head-to-head mode, ego + opp:
 ### Step 1 - Launch the controller
 ```
-$ cd [root of this repo]/src/f1tenth_gym_ros
+$ cd ~/f110_ws/src/f1tenth_gym_ros
 $ git checkout origin/multi_node
 $ sudo ./build_docker.sh (it takes several minutes)
 $ sudo ./docker.sh
@@ -36,7 +38,7 @@ $ sudo ./docker.sh
 ### Step 2 - Launch the controller
 ```
 edit the class Agent() in file wall_following_agent_node.py: comment the part about “single vehicle racing” and uncomment the part about “head-to-head racing”
-$ cd [root of this repo]
+$ cd ~/f110_ws/
 $ catkin_make
 $ roslaunch f1tenth_controller_example wall_following_agent_node.launch
 ```
