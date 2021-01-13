@@ -49,6 +49,6 @@ $ roslaunch f1tenth_controller_example wall_following_agent_node.launch
 4. file `CMakeLists.txt`: in case that you write the controller in C++, you need to modify this file.
 
 ## What is missing in the example code?
-1. in the example code, we only use the information of Lidar via the topic `/scan` but not `/odom`. You can use `/odom` to obtain the ego agent's odometry for your own algorithm! Its type is [`nav_msgs/Odometry`](http://docs.ros.org/en/melodic/api/nav_msgs/html/msg/Odometry.html, http://wiki.ros.org/navigation/) and see more details [here](Tutorials/RobotSetup/Odom).
+1. in the example code, we only use the information of Lidar via the topic `/scan` but not `/odom`. You can use `/odom` to obtain the ego agent's odometry for your own algorithm! Its type is [`nav_msgs/Odometry`](http://docs.ros.org/en/melodic/api/nav_msgs/html/msg/Odometry.html) and see more details [here](http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom).
 2. we have not use the information from the topic `/race_info`. You can subscript to it for getting both agents' elapsed runtimes, lap count, and the collsion info.
 3. for head-to-head mode, we suppose that the ego and opp vehicle use the same controller and put their controller inside a same file. Of course you could use different controllers for each! In practice, it is better to write their controllers in different files. 
