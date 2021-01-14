@@ -55,9 +55,9 @@ $ sudo ./build_docker.sh
 ```
 We provided two different tracks, with / without obstacles, which is used in F1tenth virtual competition edition IFAC2020 and IROS2020. Their names are: `map_name` = `berlin.png`,`berlin_OFFICIAL_obstacles.png`,`vegas.png`,`vegas_OFFICIAL_obstacles.png`. You could find them in the folder `maps/`.
 
-For more maps, you can have a look [here](https://github.com/f1tenth/f1tenth_simulator/tree/master/maps). You can also DIY a map (design a new one or add obstacles to an old one) by drawing! Just remember: white for free space and black for obstacles.
+For more maps, you can have a look [here](https://github.com/f1tenth/f1tenth_simulator/tree/master/maps) and copy them to `maps/` for usage. You can also DIY a map (design a new one or add obstacles on an old one) by drawing on map image (png/pgm/... files)! Just remember: white for free space and black for obstacles.
 
-It should just works perfertly! For more details on changing maps, we refer to the description [here](https://github.com/f1tenth/f1tenth_gym_ros#changing-maps).
+It should just work perfertly! For more details on changing maps, we refer to the description [here](https://github.com/f1tenth/f1tenth_gym_ros#changing-maps).
 
 
 # Write the controller code by yourself!
