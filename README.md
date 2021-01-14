@@ -14,7 +14,7 @@ $ git clone https://github.com/f1tenth/f1tenth_gym_ros.git
 ### Step 1 - Launch the simulator:
 ```
 $ cd ~/f110_ws/src/f1tenth_gym_ros/
-$ git checkout origin/master
+$ git checkout master
 $ sudo ./build_docker.sh (it takes several minutes)
 $ sudo ./docker.sh
 ```
@@ -30,19 +30,35 @@ $ roslaunch f1tenth_controller_example wall_following_agent_node.launch
 ## Head-to-head mode, ego + opp:
 ### Step 1 - Launch the controller
 ```
-$ cd ~/f110_ws/src/f1tenth_gym_ros
-$ git checkout origin/multi_node
+$ cd ~/f110_ws/src/f1tenth_gym_ros/
+$ git checkout multi_node
 $ sudo ./build_docker.sh (it takes several minutes)
 $ sudo ./docker.sh
 ```
 
 ### Step 2 - Launch the controller
+In another temrinal do :
 ```
 edit the class Agent() in file wall_following_agent_node.py: comment the part about “single vehicle racing” and uncomment the part about “head-to-head racing”
 $ cd ~/f110_ws/
 $ catkin_make
 $ roslaunch f1tenth_controller_example wall_following_agent_node.launch
 ```
+
+# Change the track map
+You can use the python script `change_map.py` to easily change track map by doing:
+```
+$ cd ~/f110_ws/
+$ sudo python src/f1tenth_quickstart/change_map.py src/f1tenth_quickstart/maps/[map_name] (replace map_name by yourself, see paragraph below)
+$ cd ~/f110_ws/f1tenth_gym_ros/
+$ sudo ./build_docker.sh
+```
+We provided two different tracks, with / without obstacles, which is used in F1tenth virtual competition edition IFAC2020 and IROS2020. Their names are: `map_name` = `berlin.png`,`berlin_OFFICIAL_obstacles.png`,`vegas.png`,`vegas_OFFICIAL_obstacles.png`. You could find them in the folder `maps/`.
+
+For more maps, you can have a look [here](https://github.com/f1tenth/f1tenth_simulator/tree/master/maps). You can also DIY a map (design a new one or add obstacles to an old one) by drawing! Just remember: white for free space and black for obstacles.
+
+It should just works perfertly! For more details on changing maps, we refer to the description [here](https://github.com/f1tenth/f1tenth_gym_ros#changing-maps).
+
 
 # Write the controller code by yourself!
 ## What to change?
