@@ -104,7 +104,7 @@ class Agent(object):
         self.pid = PID(KP,KI,KD)
 
     def calc_drive_cmd(self, scan_msg):
-        print('got scan, now planning...')
+        # print('got scan, now planning...')
         drive = AckermannDriveStamped()
         # print "angles: {}".format(find_angle(scan_msg,1.))
         left,right = dist_min(scan_msg)
