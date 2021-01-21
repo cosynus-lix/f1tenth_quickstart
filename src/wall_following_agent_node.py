@@ -2,6 +2,7 @@
 import rospy
 from ackermann_msgs.msg import AckermannDriveStamped
 from sensor_msgs.msg import LaserScan
+from f1tenth_gym_ros.msg import RaceInfo
 
 TARGET_DIST_RIGHT = 1.2
 LOOKING_ANGLE = 0.7
@@ -92,6 +93,8 @@ class Agent(object):
         self.drive_pub = rospy.Publisher('/drive', AckermannDriveStamped, queue_size=1)
         self.scan_sub = rospy.Subscriber('/scan', LaserScan, self.scan_callback, queue_size=1)
 
+        self.scan_sub = rospy.Subscriber('/race_info', RaceInfo, self.race_info_feedback, queue_size=1)
+
         # head-to-head racing
         '''
         self.drive_pub_ego = rospy.Publisher('/ego_id/drive', AckermannDriveStamped, queue_size=1)
@@ -102,6 +105,11 @@ class Agent(object):
 
         self.steering = 0
         self.pid = PID(KP,KI,KD)
+
+        self.ego_finish_time = 0
+        self.opp_finish_time = 0
+        self.ego_last_lap_count = 0
+        self.opp_last_lap_count = 0
 
     def calc_drive_cmd(self, scan_msg):
         # print('got scan, now planning...')
@@ -124,6 +132,27 @@ class Agent(object):
     def scan_callback_opp(self, scan_msg):
         self.drive_pub_opp.publish(self.calc_drive_cmd(scan_msg))
     '''
+
+    # feedback function for race_info topic
+    def race_info_feedback(self, race_info_msg):
+        print("--------------------------")
+        print("ego count:  ", race_info_msg.ego_lap_count)
+        print("ego timing: ", race_info_msg.ego_elapsed_time)
+        print("opp count:  ", race_info_msg.ego_lap_count)
+        print("opp timing: ", race_info_msg.ego_elapsed_time)
+
+        if (self.ego_last_lap_count == 0 and race_info_msg.ego_lap_count == 1):
+            self.ego_finish_time = race_info_msg.ego_elapsed_time
+        if (self.opp_last_lap_count == 0 and race_info_msg.opp_lap_count == 1):
+            self.opp_finish_time = race_info_msg.opp_elapsed_time
+
+        self.ego_last_lap_count = race_info_msg.ego_lap_count
+        self.opp_last_lap_count = race_info_msg.opp_lap_count
+
+        if (race_info_msg.ego_lap_count >= 1):
+            print("============= ego finish time: ", self.ego_finish_time)
+        if (race_info_msg.opp_lap_count >= 1):
+            print("============= opp finish time: ", self.opp_finish_time)
 
 if __name__ == '__main__':
     rospy.init_node('dummy_agent')
