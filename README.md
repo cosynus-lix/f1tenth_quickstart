@@ -22,8 +22,8 @@ $ sudo ./docker.sh
 In another temrinal do :
 ```
 $ cd ~/f110_ws/
-$ source devel/setup.bash
 $ catkin_make
+$ source devel/setup.bash
 $ roslaunch f1tenth_controller_example wall_following_agent_node.launch
 ```
 
@@ -50,12 +50,13 @@ You can use the python script `change_map.py` to easily change track map by doin
 ```
 $ cd ~/f110_ws/
 $ sudo python src/f1tenth_quickstart/change_map.py src/f1tenth_quickstart/maps/[map_name] (replace map_name by yourself, see paragraph below)
-$ cd ~/f110_ws/f1tenth_gym_ros/
+$ cd ~/f110_ws/src/f1tenth_gym_ros/
 $ sudo ./build_docker.sh
 ```
 We provided two different tracks, with / without obstacles, which is used in F1tenth virtual competition edition IFAC2020 and IROS2020. Their names are: `map_name` = `berlin.png`,`berlin_OFFICIAL_obstacles.png`,`vegas.png`,`vegas_OFFICIAL_obstacles.png`. You could find them in the folder `maps/`.
 
-For more maps, you can have a look [here](https://github.com/f1tenth/f1tenth_simulator/tree/master/maps) and download chosed ones to `maps/` for usage. You can also DIY a map (design a new one or add obstacles on an old one) by drawing pixels on map image (png/pgm/... files)! Just remember: white for free space and black for obstacles.
+For more maps, you can have a look [here](https://github.com/f1tenth/f1tenth_simulator/tree/master/maps) and download chosed ones (with the corresponding `.yaml`) to `maps/` for usage.
+You can also DIY a map (design a new one or add obstacles on an old one) by drawing pixels on map image (png/pgm/... files)! Just remember: white for free space and black for obstacles. Moreover, in the `.yaml` file, choose a small value for `resolution` and set the third coordinate of `origin` to a null value (e.g. `0`).
 
 It should just work perfertly! For more details on changing maps, we refer to the description [here](https://github.com/f1tenth/f1tenth_gym_ros#changing-maps).
 
