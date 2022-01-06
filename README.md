@@ -1,6 +1,11 @@
 This repository is for providing a quick start on using the [f1tenth_gym_ros](https://github.com/f1tenth/f1tenth_gym_ros) to launch a F1tenth virtual compeition.
 
-(ATTENTION: If fail to build the f1tenth_gym_ros docker, check the system version and ROS version, which should be **Ubuntu 18.04 + ROS melodic**. See more details at this [issue](https://github.com/cosynus-lix/f1tenth_quickstart/issues/3), credit to [@NicolasHHH](https://github.com/NicolasHHH).)
+ATTENTION: If fail to build the f1tenth_gym_ros docker
+
+> 1) check the system version and ROS version, which should be **Ubuntu 18.04 + ROS melodic**. 
+> 2) f1tenth_gym_ros works with the [f1tenth_gym](https://github.com/f1tenth/f1tenth_gym) as the backend simulator only on its branch **cpp_backend_archive** (not a default main branch). 
+> 
+> See more details at this [issue](https://github.com/cosynus-lix/f1tenth_quickstart/issues/3), credit to [@NicolasHHH](https://github.com/NicolasHHH).
 
 # Quick demonstration by using example code
 ## Preparation:
