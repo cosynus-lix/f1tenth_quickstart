@@ -21,7 +21,7 @@ $ git clone https://github.com/f1tenth/f1tenth_gym_ros.git
 ### Step 1 - Launch the simulator:
 ```
 $ cd ~/f110_ws/src/f1tenth_gym_ros/
-$ git checkout master
+$ git checkout ros1
 $ sudo ./build_docker.sh (it takes several minutes)
 $ sudo ./docker.sh
 ```
