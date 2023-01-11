@@ -24,7 +24,7 @@ In another temrinal do:
 $ cd ~/f110_ws/
 $ catkin_make
 $ source devel/setup.bash
-$ roslaunch f1tenth_controller_example wall_following_agent_node.launch
+$ roslaunch f1tenth_controller_example wall_following_agent_node_SINGLE.launch
 ```
 You can also use keyboard as the controller to move the ego vehicle:
 ```
@@ -39,13 +39,13 @@ To reset vehicle's pose, click `2D Pose Estimate` in RVIZ.
 
 To add or remove obstacles, click `Publish Point` in RVIZ. If you click in a free space, a square obstacle will be added. If you click on an obstacle, the obstacle will be removed. Please keep in mind that obstacles will be added on the fly and will disappear when the simulator is shutdown.
 
- ![image0001](media/rviz_buttons.png)
+ ![rviz buttons](media/rviz_buttons.png)
 
 ## Head-to-head mode, ego + opp:
 ### Step 1 - Launch the controller
 ```
 $ cd ~/f110_ws/src/f1tenth_gym_ros/
-$ git checkout multi_node
+$ git checkout multi_node_add_obstacles_set_pose_H2H
 $ sudo ./build_docker.sh (it might take several minutes)
 $ sudo ./docker.sh
 ```
@@ -53,11 +53,16 @@ $ sudo ./docker.sh
 ### Step 2 - Launch the controller
 In another temrinal do :
 ```
-edit the class Agent() in file wall_following_agent_node.py: comment the part about “single vehicle racing” and uncomment the part about “head-to-head racing”
 $ cd ~/f110_ws/
 $ catkin_make
-$ roslaunch f1tenth_controller_example wall_following_agent_node.launch
+$ source devel/setup.bash
+$ roslaunch f1tenth_controller_example wall_following_agent_node_H2H.launch
 ```
+
+### Step 3 - Add/remove obstacles and pose reset
+To reset vehicles' pose, click `2D Pose Estimate` in RVIZ. The first click will set the pose for the ego vehicle and the second click will set the pose for the opponent vehicle.
+
+To add or remove obstacles, same as in the single vehicle racing mode.
 
 # Change the track map
 You can use the python script `change_map.py` to easily change track map by doing:
