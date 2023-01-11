@@ -11,7 +11,7 @@ $ git clone https://github.com/cosynus-lix/f1tenth_gym_ros
 ```
 
 ## Single vehicle mode:
-### Step 1 - Launch the simulator:
+### Step 1 - Launch the simulator
 ```
 $ cd ~/f110_ws/src/f1tenth_gym_ros/
 $ git checkout ros1_add_obstacles_set_pose_SINGLE
@@ -42,7 +42,7 @@ To add or remove obstacles, click `Publish Point` in RVIZ. If you click in a fre
  ![rviz buttons](media/rviz_buttons.png)
 
 ## Head-to-head mode, ego + opp:
-### Step 1 - Launch the controller
+### Step 1 - Launch the simulator
 ```
 $ cd ~/f110_ws/src/f1tenth_gym_ros/
 $ git checkout multi_node_add_obstacles_set_pose_H2H
