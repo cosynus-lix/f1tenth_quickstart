@@ -1,12 +1,5 @@
 This repository is for providing a quick start on using the [f1tenth_gym_ros](https://github.com/f1tenth/f1tenth_gym_ros) to launch a F1tenth virtual compeition.
 
-ATTENTION: If fail to build the f1tenth_gym_ros docker
-
-> 1) check the system version and ROS version, which should be **Ubuntu 18.04 + ROS melodic**. 
-> 2) f1tenth_gym_ros works with the [f1tenth_gym](https://github.com/f1tenth/f1tenth_gym) as the backend simulator only on its branch **cpp_backend_archive** (not a default main branch). 
-> 
-> See more details at this [issue](https://github.com/cosynus-lix/f1tenth_quickstart/issues/3), credit to [@NicolasHHH](https://github.com/NicolasHHH).
-
 # Quick demonstration by using example code
 ## Preparation:
 ```
@@ -14,32 +7,46 @@ Install Docker see https://docs.docker.com/engine/install/
 $ mkdir -p ~/f110_ws/src
 $ cd ~/f110_ws/src/
 $ git clone https://github.com/cosynus-lix/f1tenth_quickstart.git
-$ git clone https://github.com/f1tenth/f1tenth_gym_ros.git
+$ git clone https://github.com/cosynus-lix/f1tenth_gym_ros
 ```
 
 ## Single vehicle mode:
 ### Step 1 - Launch the simulator:
 ```
 $ cd ~/f110_ws/src/f1tenth_gym_ros/
-$ git checkout ros1
-$ sudo ./build_docker.sh (it takes several minutes)
+$ git checkout ros1_add_obstacles_set_pose_SINGLE
+$ sudo ./build_docker.sh (it might take several minutes)
 $ sudo ./docker.sh
 ```
 ### Step 2 - Launch the controller
-In another temrinal do :
+In another temrinal do:
 ```
 $ cd ~/f110_ws/
 $ catkin_make
 $ source devel/setup.bash
 $ roslaunch f1tenth_controller_example wall_following_agent_node.launch
 ```
+You can also use keyboard as the controller to move the ego vehicle:
+```
+$ cd ~/f110_ws/
+$ catkin_make
+$ source devel/setup.bash
+$ roslaunch f1tenth_controller_example rviz_with_keyboard_ctrl.launch
+```
+
+### Step 3 - Add/remove obstacles and pose reset
+To reset vehicle's pose, click `2D Pose Estimate` in RVIZ. 
+
+To add or remove obstacles, click `Publish Point` in RVIZ. If you click in a free space, a square obstacle will be added. If you click on an obstacle, the obstacle will be removed. Please keep in mind that obstacles will be added on the fly and will disappear when the simulator is shutdown.
+
+ ![image0001](media/rviz_buttons.png)
 
 ## Head-to-head mode, ego + opp:
 ### Step 1 - Launch the controller
 ```
 $ cd ~/f110_ws/src/f1tenth_gym_ros/
 $ git checkout multi_node
-$ sudo ./build_docker.sh (it takes several minutes)
+$ sudo ./build_docker.sh (it might take several minutes)
 $ sudo ./docker.sh
 ```
 
@@ -63,7 +70,7 @@ $ sudo ./build_docker.sh
 We provided two different tracks, with / without obstacles, which is used in F1tenth virtual competition edition IFAC2020 and IROS2020. Their names are: `map_name` = `berlin.png`,`berlin_OFFICIAL_obstacles.png`,`vegas.png`,`vegas_OFFICIAL_obstacles.png`. You could find them in the folder `maps/`.
 
 For more maps, you can have a look [here](https://github.com/f1tenth/f1tenth_simulator/tree/master/maps) and download chosed ones (with the corresponding `.yaml`) to `maps/` for usage.
-You can also DIY a map (design a new one or add obstacles on an old one) by drawing pixels on map image (png/pgm/... files)! Just remember: white for free space and black for obstacles. Moreover, in the `.yaml` file, choose a small value for `resolution` and set the third coordinate of `origin` to a null value (e.g. `0`).
+You can also DIY a map (design a new one or add obstacles on an old one) by drawing pixels on map image (png/pgm/... files) under any picture editor! Just remember: white for free space and black for obstacles. Moreover, in the `.yaml` file, choose a small value for `resolution` and set the third coordinate of `origin` to a null value (e.g. `0`).
 
 It should just work perfertly! For more details on changing maps, we refer to the description [here](https://github.com/f1tenth/f1tenth_gym_ros#changing-maps).
 
